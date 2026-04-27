@@ -52,7 +52,7 @@ import {
 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 const BUBBLE_PRESETS = [
   { name: '經典深藍', css: 'background: linear-gradient(135deg, #007AFF, #0056b3); color: white; border-radius: 18px 18px 2px 18px; border: none; shadow: none;' },
@@ -899,7 +899,7 @@ const DiaryApp = ({
         return;
       }
       
-      const apiKeyToUse = aiSettings.apiKey || process.env.GEMINI_API_KEY;
+      const apiKeyToUse = aiSettings.apiKey || import.meta.env.VITE_GEMINI_API_KEY;
       if (!apiKeyToUse) {
         alert('請先在設定中輸入 Gemini API 連線金鑰！');
         setIsGeneratingLog(false);
@@ -1127,7 +1127,7 @@ export default function App() {
     signature: '今天也是美好的一天' 
   });
   const [aiSettings, setAiSettings] = useState<AISettings>({ 
-    apiKey: process.env.GEMINI_API_KEY || '', 
+    apiKey: import.meta.env.VITE_GEMINI_API_KEY || '', 
     model: 'gemini-1.5-flash' 
   });
   const [customIcons, setCustomIcons] = useState<Record<string, string>>({});
@@ -3664,5 +3664,3 @@ const AppIcon = ({ id, label, color, icon, isDarkMode, isJiggling, customSrc, on
     )}
   </div>
 );
-
-
